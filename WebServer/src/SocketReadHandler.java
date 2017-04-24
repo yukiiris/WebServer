@@ -31,6 +31,22 @@ public class SocketReadHandler {
 	{	
 		try
 		{		
+			CharsetDecoder decoder = Charset.forName("GBK").newDecoder();
+			ByteBuffer buffer = ByteBuffer.allocate(1024);
+			socketChannel.read(buffer);
+			buffer.flip();
+			String input = decoder.decode(buffer).toString();
+			System.out.println(input);
+			if (input.startsWith("GET") || input.startsWith("get"))
+			{
+				String[] split = input.split(new String(" "));
+				System.out.println(split[2]);
+				if (split[2].contains("HTTP/1.1"))
+				{
+					System.out.println("3");
+				}
+				
+			}
 			SocketRequsetHandler socketRequsetHandler = new SocketRequsetHandler(socketChannel);
 			socketRequsetHandler.run();
 		}

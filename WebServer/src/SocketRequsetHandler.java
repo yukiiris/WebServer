@@ -5,9 +5,13 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.util.logging.Logger;
+
+import sun.util.logging.resources.logging;
 public class SocketRequsetHandler implements Runnable {
 	
 	private SocketChannel socketChannel;
+	private static final Logger log = Logger.getLogger(SocketRequsetHandler.class.getName());  
 	
 	public SocketRequsetHandler (SocketChannel socketChannel)
 	{
@@ -16,9 +20,10 @@ public class SocketRequsetHandler implements Runnable {
 	
 	public void run()
 	{
+		//log.info("111");
 		try
 		{
-			String file = "D:\\workspace\\WebServer\\src\\index.html";
+			String file = "C:\\Users\\asus\\Documents\\GitHub\\WebServer\\WebServer\\src\\index.html";
 			FileInputStream inputStream = new FileInputStream(new File(file));
 			FileChannel channel = inputStream.getChannel();
 			ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -35,7 +40,7 @@ public class SocketRequsetHandler implements Runnable {
 			CharsetDecoder decoder = Charset.forName("GBK").newDecoder();
 			StringBuilder s = new StringBuilder();
 			String html = decoder.decode(buffer).toString();
-			System.out.println(html);
+			//System.out.println(html);
 			s.append("HTTP/1.0 200 OK").append("\r\n");
 			s.append("MIME_version:1.0").append("\r\n");
 			s.append("Content_Type:text/html").append("\r\n");
@@ -44,7 +49,9 @@ public class SocketRequsetHandler implements Runnable {
             s.append(html).append("\r\n");
             s.append("\r\n");
             output = ByteBuffer.wrap(s.toString().getBytes());
+            //log.info(decoder.decode(buffer).toString());
             socketChannel.write(output);
+            //socketChannel.write(buffer);
 		}
 		catch (Exception e)
 		{

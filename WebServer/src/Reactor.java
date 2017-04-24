@@ -38,7 +38,7 @@ public class Reactor implements Runnable {
 					SelectionKey selKey = (SelectionKey) it.next();
 					log.info("Connected successfully!");
 					dispatch(selKey);
-					//it.remove();
+					it.remove();
 					//it.remove();
 				}
 			}
