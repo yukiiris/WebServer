@@ -39,7 +39,6 @@ public class Reactor implements Runnable {
 					log.info("Connected successfully!");
 					dispatch(selKey);
 					it.remove();
-					//it.remove();
 				}
 			}
 		}
