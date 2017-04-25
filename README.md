@@ -4,15 +4,15 @@
 
 ### 简介
 
-1.基于java实现 
-2.采用reactor设计模式 
-3.运用了select作为IO多路复用机制 
-4.服务器包含四个类，分别是： 
-    Reactor（反应器） 
-    Acceptor（接收器） 
-    SocketReadHandler（处理请求，找到所请求的静态文件） 
-    SocketRequestHandler（创造响应，发送文件） 
-5.可用文件有index.html和index2.html 
+1.基于java实现  
+2.采用reactor设计模式  
+3.运用了select作为IO多路复用机制  
+4.服务器包含四个类，分别是：  
+    Reactor（反应器）  
+    Acceptor（接收器）  
+    SocketReadHandler（处理请求，找到所请求的静态文件）  
+    SocketRequestHandler（创造响应，发送文件）  
+5.可用文件有index.html和index2.html  
 
 
 ### 感想 
