@@ -8,6 +8,7 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 //import java.util.logging.Logger;
 public class SocketRequsetHandler implements Runnable {
 	
@@ -26,15 +27,10 @@ public class SocketRequsetHandler implements Runnable {
 		try
 		{
 			CharsetDecoder decoder = Charset.forName("GBK").newDecoder();
-			StringBuilder root = new StringBuilder("C:\\Users\\asus\\Documents\\GitHub\\WebServer\\WebServer\\src\\");
-			root.append(filename);
-			String file = root.toString();
-			Path path = Paths.get(file);
+			Path path = Paths.get("WebServer/src/" + filename);
 			if (Files.exists(path))
-			{
-				System.out.println(file);
-		
-				FileInputStream inputStream = new FileInputStream(new File(file));
+			{		
+				FileInputStream inputStream = new FileInputStream(new File("WebServer/src/" + filename));
 				FileChannel channel = inputStream.getChannel();
 				ByteBuffer buffer = ByteBuffer.allocate(1024);
 				
